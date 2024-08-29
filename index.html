@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Salarios</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Calculadora de Salarios</h1>
+    <div class="input-container">
+        <select id="select-trabajador">
+            <option value="">Seleccione un trabajador</option>
+        </select>
+        <input type="number" id="salarioDia" placeholder="Salario por día">
+        <button onclick="actualizarSalario()">Actualizar Salario</button>
+    </div>
+    <table id="tablaTrabajadores">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Salario por día</th>
+                <th>Días trabajados</th>
+                <th>Salario quincenal</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <h2>Total a pagar: $<span id="totalPagar">0</span></h2>
+
+    <script src="script.js"></script>
+</body>
+</html>
