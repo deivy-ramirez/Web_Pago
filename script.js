@@ -1,6 +1,7 @@
 let trabajadores = [];
 let asistencia = {};
 
+// Cargar datos desde localStorage
 function cargarDatos() {
     const trabajadoresGuardados = localStorage.getItem('trabajadores');
     if (trabajadoresGuardados) {
@@ -13,6 +14,7 @@ function cargarDatos() {
     }
 }
 
+// Actualizar el select de trabajadores en la calculadora de salarios
 function actualizarSelectTrabajadores() {
     const select = document.getElementById('select-trabajador');
     select.innerHTML = '<option value="">Seleccione un trabajador</option>';
@@ -24,6 +26,7 @@ function actualizarSelectTrabajadores() {
     });
 }
 
+// Actualizar el salario de un trabajador seleccionado
 function actualizarSalario() {
     const nombre = document.getElementById('select-trabajador').value;
     const salarioDia = parseFloat(document.getElementById('salarioDia').value);
@@ -32,15 +35,21 @@ function actualizarSalario() {
         const trabajador = trabajadores.find(t => t.nombre === nombre);
         if (trabajador) {
             trabajador.salarioDia = salarioDia;
-            guardarTrabajadores(); // Guardar en localStorage
+            guardarTrabajadores(); // Guardar la lista actualizada en localStorage
             actualizarTabla(); // Actualizar la tabla con el nuevo salario
-            document.getElementById('salarioDia').value = ''; // Limpiar el campo
+            document.getElementById('salarioDia').value = ''; // Limpiar el campo de salario
         }
     } else {
         alert('Por favor, seleccione un trabajador e ingrese un salario válido.');
     }
 }
 
+// Guardar la lista de trabajadores en localStorage
+function guardarTrabajadores() {
+    localStorage.setItem('trabajadores', JSON.stringify(trabajadores));
+}
+
+// Actualizar la tabla de salarios en la calculadora
 function actualizarTabla() {
     const tbody = document.querySelector('#tablaTrabajadores tbody');
     let totalPagar = 0;
@@ -73,10 +82,7 @@ function actualizarTabla() {
     document.getElementById('totalPagar').textContent = totalPagar.toFixed(2);
 }
 
-function guardarTrabajadores() {
-    localStorage.setItem('trabajadores', JSON.stringify(trabajadores));
-}
-
+// Inicializar la página de la calculadora de salarios
 window.onload = function() {
     cargarDatos();
     actualizarSelectTrabajadores();
