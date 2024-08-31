@@ -32,9 +32,9 @@ function actualizarSalario() {
         const trabajador = trabajadores.find(t => t.nombre === nombre);
         if (trabajador) {
             trabajador.salarioDia = salarioDia;
-            guardarTrabajadores();
-            actualizarTabla();
-            document.getElementById('salarioDia').value = '';
+            guardarTrabajadores(); // Guardar en localStorage
+            actualizarTabla(); // Actualizar la tabla con el nuevo salario
+            document.getElementById('salarioDia').value = ''; // Limpiar el campo
         }
     } else {
         alert('Por favor, seleccione un trabajador e ingrese un salario válido.');
